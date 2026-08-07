@@ -435,6 +435,31 @@
   .hero-meta a.price-link { color: inherit; border-bottom-color: rgba(255,255,255,0.4); }
   .hero-meta a.price-link:hover { color: var(--blue); border-bottom-color: var(--blue); }
 
+  /* ---------- Google review links -> live GBP listing ----------
+     Every rating figure on the page links out to the live Google
+     reviews panel, so the authoritative count is always one click
+     away even as the on-page figure ages. */
+  a.gr {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+    font-weight: inherit;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  a.gr:hover, a.gr:focus {
+    color: var(--blue-deep);
+    border-bottom-color: var(--blue-deep);
+    border-bottom-style: solid;
+  }
+  /* Gutter chip: the whole rating block is one target */
+  a.gr-block { display: block; color: inherit; text-decoration: none; }
+  a.gr-block .gr-u { border-bottom: 1px dotted currentColor; transition: border-color .15s ease; }
+  a.gr-block:hover .stars, a.gr-block:focus .stars { color: var(--blue-deep); }
+  a.gr-block:hover .gr-u, a.gr-block:focus .gr-u { border-bottom-style: solid; }
+  /* On the dark Findlay band, keep contrast */
+  .findlay-band a.gr { border-bottom-color: rgba(255,255,255,.45); }
+  .findlay-band a.gr:hover, .findlay-band a.gr:focus { color: #ffffff; border-bottom-color: #ffffff; }
+
   /* ---------- Live-pricing CTA below the trim grid ---------- */
   .inventory-cta {
     display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
@@ -1239,7 +1264,7 @@
             <div class="row"><dt>Cold-weather effect</dt><dd>About 1 PSI lost for every 10°F drop</dd></div>
             <div class="row"><dt>Bumper-to-bumper warranty</dt><dd>3 years / 36,000 miles · TPMS sensors typically covered</dd></div>
             <div class="row"><dt>Service hours</dt><dd>Mon–Fri 7–6 · Sat 8–4 (Express only) · Sun closed</dd></div>
-            <div class="row"><dt>Google rating</dt><dd>4.8★ from 1,700+ reviews</dd></div>
+            <div class="row"><dt>Google rating</dt><dd><a class="gr" href="https://www.google.com/search?q=findlay+subaru+prescott#lrd=0x872d2fa184d0021f:0x64f15fffa23ff73f,1,,," target="_blank" rel="noopener" aria-label="Read Findlay Subaru Prescott reviews on Google, 4.8 stars from over 1,700 reviews">4.8★ from 1,700+ reviews</a></dd></div>
             <div class="row"><dt>Schedule</dt><dd><a href="https://www.findlaysubaruprescott.com/findlay-subaru-schedule-service">Schedule service online →</a></dd></div>
           </dl>
         </div>
@@ -1476,7 +1501,7 @@
         <h2 class="section-h">Why book tire and TPMS service at <em>Findlay Subaru Prescott</em>.</h2>
         <p class="tldr">We are a Subaru store, so our technicians work on these AWD systems every day. We use Subaru tooling for sensor relearns rather than a generic reset. Our sales staff is non-commissioned, and our pricing is posted with no hidden fees.</p>
 
-        <p>Findlay Subaru Prescott is rated 4.8 stars from 1,700+ Google reviews, with owners repeatedly noting thorough inspections and no-pressure service. We are a CARFAX Top-Rated Dealer for five consecutive years (2019 through 2023).</p>
+        <p>Findlay Subaru Prescott is rated <a class="gr" href="https://www.google.com/search?q=findlay+subaru+prescott#lrd=0x872d2fa184d0021f:0x64f15fffa23ff73f,1,,," target="_blank" rel="noopener">4.8 stars from 1,700+ Google reviews</a>, with owners repeatedly noting thorough inspections and no-pressure service. We are a CARFAX Top-Rated Dealer for five consecutive years (2019 through 2023).</p>
 
         <h3 style="margin-top: 24px;">Service department hours.</h3>
         <div class="cross-table desktop-only" style="margin-top: 24px;">
@@ -1515,9 +1540,11 @@
       </div>
       <div class="chip">
         <div class="lbl">Google rating</div>
-        <div class="stars" aria-hidden="true">★★★★★</div>
-        <strong>4.8</strong>
-        <div class="sub">from 1,700+ Google reviews · thorough inspections, no-pressure service</div>
+        <a class="gr-block" href="https://www.google.com/search?q=findlay+subaru+prescott#lrd=0x872d2fa184d0021f:0x64f15fffa23ff73f,1,,," target="_blank" rel="noopener" aria-label="Read Findlay Subaru Prescott reviews on Google, 4.8 stars from over 1,700 reviews">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <strong>4.8</strong>
+          <div class="sub">from <span class="gr-u">1,700+ Google reviews</span> · thorough inspections, no-pressure service</div>
+        </a>
       </div>
       <div class="chip">
         <div class="lbl">Tire rotation</div>
@@ -1537,7 +1564,7 @@
     <div class="trust-grid">
       <div class="item">
         <div class="num">4.8</div>
-        <div class="lbl">Google rating across<br>1,700+ reviews</div>
+        <div class="lbl"><a class="gr" href="https://www.google.com/search?q=findlay+subaru+prescott#lrd=0x872d2fa184d0021f:0x64f15fffa23ff73f,1,,," target="_blank" rel="noopener" aria-label="Read Findlay Subaru Prescott reviews on Google, 4.8 stars from over 1,700 reviews">Google rating across<br>1,700+ reviews</a></div>
       </div>
       <div class="item">
         <div class="num">5<small>yrs</small></div>
@@ -1703,11 +1730,13 @@
      Sources verified September 2026 against Subaru USA Owner Resources
      and NHTSA (recall lookups by VIN).
 
-     REVIEW COUNT: aggregateRating.reviewCount below (1709) is the
-     last figure verified against the Google Business Profile.
-     On-page copy reads "1,700+" so it cannot go stale downward as
-     reviews accrue. Re-check the live Google listing and update
-     this integer before each publish.
+     REVIEW COUNT: aggregateRating.reviewCount below (1710) was
+     verified against the live Google Business Profile on
+     2026-08-05 (4.8 stars, 1,710 reviews). On-page copy reads
+     "1,700+" so it can never overstate the real figure as reviews
+     accrue, and every rating on the page links out to the live
+     Google reviews panel. Bump the "1,700+" copy to "1,800+" once
+     the listing crosses 1,800, and refresh this integer then.
      ============================================================ -->
 <script type="application/ld+json">
 {
@@ -1784,12 +1813,13 @@
         "https://www.facebook.com/FindlaySubaruPrescott",
         "https://www.instagram.com/findlaysubaruprescott",
         "https://www.youtube.com/@findlaysubaruprescott",
-        "https://www.google.com/maps/place/Findlay+Subaru+Prescott"
+        "https://www.google.com/maps/place/Findlay+Subaru+Prescott",
+        "https://www.google.com/search?q=findlay+subaru+prescott#lrd=0x872d2fa184d0021f:0x64f15fffa23ff73f,1,,,"
       ],
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.8",
-        "reviewCount": "1709",
+        "reviewCount": "1710",
         "bestRating": "5",
         "worstRating": "1"
       },
